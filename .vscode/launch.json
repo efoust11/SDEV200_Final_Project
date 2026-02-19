@@ -9,14 +9,18 @@
             "name": "Test",
             "request": "launch",
             "mainClass": "Test",
-            "projectName": "SDEV200_Final_Project_15c0236d"
+            "projectName": "SDEV200_Final_Project_15c0236d",
+            "vmArgs": "--module-path C:/Users/ekfou/Desktop/JavaClass/javafx-sdk-17.0.18/lib --add-modules javafx.controls,javafx.fxml"
+        
         },
         {
             "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "SDEV200_Final_Project_15c0236d"
+            "projectName": "SDEV200_Final_Project_15c0236d",
+            "vmArgs": "--module-path C:/Users/ekfou/Desktop/JavaClass/javafx-sdk-17.0.18/lib --add-modules javafx.controls,javafx.fxml"
+        
         },
         {
             "type": "java",
