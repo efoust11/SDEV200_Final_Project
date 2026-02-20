@@ -80,6 +80,10 @@ abstract public class Character {
     public Integer getAge(){return age;}
     public Integer getHeight(){return height;}
     public boolean getGender(){return gender;}
+    public String getGenderAsString(){
+        if(gender){return "Male";}
+        else{return "Female";}
+    }
     public String getPersonality(){return personalityTypes;}
 
     public Integer getAttack(){return attackPower;}
@@ -103,8 +107,23 @@ abstract public class Character {
         character.setIntelligence();
 
         return character;
-
     }
 
+    //create a random character, with user input
+    public Character randomize(Character character, boolean gender){
+        character.setGender(gender);
+        character.setAge();
+        character.setHeight();
+        character.setName();
+        character.setPersonality();
+
+        character.setAttack();
+        character.setDefense();
+        character.setSpeed();
+        character.setStamina();
+        character.setIntelligence();
+
+        return character;
+    }
 
 }
