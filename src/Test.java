@@ -1,7 +1,11 @@
 //Test for each type of character
+
+import java.io.FileNotFoundException;
+
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         System.out.println("\n Test 1 ----------");
+        
         Human human = new Human();
         human.randomize(human);
         System.out.println(human.toString());

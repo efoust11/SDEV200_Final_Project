@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Elf extends Character {
 
@@ -18,6 +23,43 @@ public class Elf extends Character {
     //Default constructor
     Elf(){
 
+    }
+
+    private List<String> maleNames = new ArrayList<>();
+    private List<String> femaleNames = new ArrayList<>();
+    private List<String> lastNames = new ArrayList<>();
+
+    @Override
+    public void setName() throws FileNotFoundException{
+        String wd = System.getProperty("user.dir");
+        if(gender){
+            File file = new File(wd + "/src/maleNames.txt");
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine())
+                maleNames.add(sc.nextLine());
+
+            this.name = maleNames.get(r.nextInt(maleNames.size()));
+            sc.close();
+        } else{
+            File file = new File(wd + "/src/femaleNames.txt");
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine())
+                femaleNames.add(sc.nextLine());
+            this.name = femaleNames.get(r.nextInt(femaleNames.size()));
+            sc.close();
+        }
+        File file = new File(wd + "/src/fantasyNames.txt");
+        Scanner sc = new Scanner(file);
+        while (sc.hasNextLine())
+            lastNames.add(sc.nextLine());
+        String lastName = lastNames.get(r.nextInt(lastNames.size())) + lastNames.get(r.nextInt(lastNames.size()));
+        String c1 = lastName.substring(0,1).toUpperCase();
+        lastName = c1 + lastName.substring(1);
+        lastName = lastName.replaceAll(" ","");
+        sc.close();
+
+        this.name = this.name + " " + lastName;
+        
     }
 
     @Override

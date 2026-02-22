@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -5,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -52,9 +55,25 @@ public class App extends Application{
 
         //add 'generate' button
         Button btnGenerate = new Button("Generate");
+        Button about = new Button("About");
 
         //add radio buttons and generate button to vbox
-        vBox.getChildren().addAll(paneForRadioButtons1, paneForRadioButtons2, btnGenerate);
+        vBox.getChildren().addAll(paneForRadioButtons1, paneForRadioButtons2, btnGenerate, about);
+
+        about.setOnAction(e ->{
+            Pane pane = new Pane();
+            pane.getChildren().add(new Text(
+                "Random Character Generator:\n" +
+                "List of first names: https://www.ssa.gov/OACT/babynames/decades/century.html\n"+
+                "List of last names: https://namecensus.com/last-names/ \n"+
+                "List of words used to build fantasy names: https://relatedwords.io \n"
+            ));
+            //create the dialog box
+            Scene scene3 = new Scene(pane);
+            Stage thirdStage = new Stage();
+            thirdStage.setScene(scene3);
+            thirdStage.show();
+        });
 
         btnGenerate.setOnAction(e -> {
             //initial character
@@ -65,31 +84,67 @@ public class App extends Application{
                 character = new Dwarf();
                 characterType = "Dwarf";
                 if(rbFemale.isSelected()){
-                    character.randomize(character, false);
+                    try {
+                        character.randomize(character, false);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 } else if(rbMale.isSelected()){
-                    character.randomize(character, true);
+                    try {
+                        character.randomize(character, true);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 } else{
-                    character.randomize(character);
+                    try {
+                        character.randomize(character);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }else if(rbElf.isSelected()){
                 character = new Elf();
                 characterType = "Elf";
                 if(rbFemale.isSelected()){
-                    character.randomize(character, false);
+                    try {
+                        character.randomize(character, false);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 } else if(rbMale.isSelected()){
-                    character.randomize(character, true);
+                    try {
+                        character.randomize(character, true);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 } else{
-                    character.randomize(character);
+                    try {
+                        character.randomize(character);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }else if(rbHuman.isSelected()){
                 character = new Human();
                 characterType = "Human";
                 if(rbFemale.isSelected()){
-                    character.randomize(character, false);
+                    try {
+                        character.randomize(character, false);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 } else if(rbMale.isSelected()){
-                    character.randomize(character, true);
+                    try {
+                        character.randomize(character, true);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 } else{
-                    character.randomize(character);
+                    try {
+                        character.randomize(character);
+                    } catch (FileNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             } 
 
