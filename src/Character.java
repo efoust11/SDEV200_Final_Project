@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -30,15 +29,9 @@ abstract public class Character {
         this.gender = gender;
     }
 
-    //Name arrays for testing. This will be expanded later to include more names.
     private List<String> maleNames = new ArrayList<>();
     private List<String> femaleNames = new ArrayList<>();
     private List<String> lastNames = new ArrayList<>();
-
-    //firstnames from https://www.ssa.gov/OACT/babynames/decades/century.html
-
-    //last https://namecensus.com/last-names/
-    
 
     //Myers-Briggs Types
     private String[] personalities = {
@@ -50,8 +43,6 @@ abstract public class Character {
 
     //Creating the Random object
     private Random r = new Random();
-
-    
 
     //Setting a random name
     public void setName() throws FileNotFoundException{
@@ -158,6 +149,15 @@ abstract public class Character {
         character.setIntelligence();
 
         return character;
+    }
+
+    //Reset only the chararcter stats
+    public void resetStats(){
+        this.attackPower = r.nextInt(6);
+        this.defensePower = r.nextInt(6);
+        this.speed = r.nextInt(6);
+        this.stamina = r.nextInt(6);
+        this.intelligence = r.nextInt(6);
     }
 
 }

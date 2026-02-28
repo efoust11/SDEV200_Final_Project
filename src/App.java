@@ -14,8 +14,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class App extends Application{
-
-    //Module 6 - GUI
     @Override 
     public void start(Stage primaryStage) {
         VBox vBox = new VBox(15); 
@@ -60,21 +58,25 @@ public class App extends Application{
         //add radio buttons and generate button to vbox
         vBox.getChildren().addAll(paneForRadioButtons1, paneForRadioButtons2, btnGenerate, about);
 
-        about.setOnAction(e ->{
-            Pane pane = new Pane();
-            pane.getChildren().add(new Text(
-                "Random Character Generator:\n" +
+        //About page
+        Pane pane = new Pane();
+            pane.setPadding(new Insets(20,20,20,20));
+            pane.getChildren().add(new Text("\n"+ "Random Character Generator:\n"+
                 "List of first names: https://www.ssa.gov/OACT/babynames/decades/century.html\n"+
                 "List of last names: https://namecensus.com/last-names/ \n"+
                 "List of words used to build fantasy names: https://relatedwords.io \n"
             ));
-            //create the dialog box
-            Scene scene3 = new Scene(pane);
-            Stage thirdStage = new Stage();
-            thirdStage.setScene(scene3);
+
+        //create the dialog box for the about page
+        Scene scene3 = new Scene(pane);
+        Stage thirdStage = new Stage();
+        thirdStage.setScene(scene3);
+
+        about.setOnAction(e ->{  
             thirdStage.show();
         });
 
+        //Generate a random character
         btnGenerate.setOnAction(e -> {
             //initial character
             Character character = null;
@@ -153,7 +155,7 @@ public class App extends Application{
             typeText.setFont(new Font(20));
             Text nameText = new Text("Name: " + character.getName());
             Text genderText = new Text("Gender: " + character.getGenderAsString());
-            Text heightText = new Text("Height: " + character.getHeight());
+            Text heightText = new Text("Height: " + character.getHeight() + " inches");
             Text ageText = new Text("Age: " + character.getAge());
             Text personalityText = new Text("Personality Type: " + character.getPersonality());
 
@@ -174,46 +176,44 @@ public class App extends Application{
             //add character stats to the dialog box
             stats.getChildren().addAll(attackText, defenseText, speedText, staminaText, intelligenceText, btnStats);
 
-            //add both the traits box and the stats box to the dialog
+            //add both the traits box and the stats box to the dialog box
             HBox results = new HBox(20);
             results.setPadding(new Insets(15, 15, 15, 15));
             results.getChildren().addAll(traits,stats);
 
-            btnStats.setOnAction(f -> {
+            btnStats.setOnAction(e2 -> {
                 //another character object is created for this button
-                Character characterStats = new Human();
+                Character characterStats = new StatsCharacter();
 
                 //new stats are generated
-                characterStats.setAttack();
-                characterStats.setDefense();
-                characterStats.setSpeed();
-                characterStats.setStamina();
-                characterStats.setIntelligence();
+                characterStats.resetStats();
 
                 attackText.setText("Attack: " + characterStats.getAttack().toString());
                 defenseText.setText("Defense: " + characterStats.getDefense().toString());
                 speedText.setText("Speed: " + characterStats.getSpeed().toString());
-                staminaText.setText("Stamina:" + characterStats.getStamina().toString());
+                staminaText.setText("Stamina: " + characterStats.getStamina().toString());
                 intelligenceText.setText("Intelligence: " + characterStats.getIntelligence().toString());
                 
             });
+            //close the dialog box and return the user inputs to the defaults
+            Button btnClear = new Button("Clear");
 
-            //create the dialog box
+            //add the 'clear' button
+            traits.getChildren().add(btnClear);
+
+            //create the dialog box for the generated character
             Scene scene2 = new Scene(results);
             Stage secondStage = new Stage();
             secondStage.setScene(scene2);
             secondStage.show();
-
-            //close the dialog box and return the user inputs to the defaults
-            Button btnClear = new Button("Clear");
-            btnClear.setOnAction(g -> {
+            
+            btnClear.setOnAction(e3 -> {
                 secondStage.close();
                 rbHuman.setSelected(true);
                 rbRandom.setSelected(true);
             });
 
-            //add the 'clear' button
-            traits.getChildren().add(btnClear);
+            
 
         });
 
